@@ -156,3 +156,29 @@ try {
     e.printStackTrace();
 }
 ```
+
+## Json 데이터가 파일로부터 읽혀오는 경우
+```
+ObjectMapper objectMapper = new ObjectMapper();
+
+try {
+    File jsonFile = new File("path/to/json/file.json");
+    
+    // 파일을 읽어와 Json 문자열로 변환
+    String jsonString = FileUtils.readFileToString(jsonFile, StandardCharsets.UTF_8);
+    
+    // Json 문자열을 해당 클래스의 객체로 변환
+    MyClass myClass = objectMapper.readValue(jsonString, MyClass.class);
+    
+    // 변환된 객체 사용
+    System.out.println("Name: " + myClass.getName());
+    System.out.println("Age: " + myClass.getAge());
+    System.out.println("Contacts: " + Arrays.toString(myClass.getContacts()));
+    System.out.println("Subjects: ");
+    for (Subject subject : myClass.getSubjects()) {
+        System.out.println("- Name: " + subject.getName() + ", Credit: " + subject.getCredit());
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
