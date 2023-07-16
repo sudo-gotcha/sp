@@ -72,6 +72,8 @@ try {
     File jsonFile = new File("path/to/json/file.json");
     FileReader fileReader = new FileReader(jsonFile);
     MyClass myClass = gson.fromJson(fileReader, MyClass.class);
+    // BufferedReader reader = new BufferedReader(new FileReader(jsonFile));
+    // MyClass myClass = gson.fromJson(fileReader, MyClass.class);
     fileReader.close();
     // 변환된 객체 사용
     System.out.println("Name: " + myClass.getName());
