@@ -116,3 +116,56 @@ try {
     e.printStackTrace();
 }
 ```
+
+## Inner class 예시
+```json
+{
+  "name": "John",
+  "age": 30,
+  "innerClasses": [
+    {
+      "innerName": "Inner1"
+    },
+    {
+      "innerName": "Inner2"
+    }
+  ]
+}
+```
+
+## java class 정의
+```java
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+public class MyClass {
+    private String name;
+    private int age;
+    private List<InnerClass> innerClasses;
+
+    // Getter 및 Setter 메서드
+
+    public static class InnerClass {
+        private String innerName;
+
+        // Getter 및 Setter 메서드
+    }
+
+    public static void main(String[] args) {
+        String jsonString = "{\"name\":\"John\",\"age\":30,\"innerClasses\":[{\"innerName\":\"Inner1\"},{\"innerName\":\"Inner2\"}]}";
+        Gson gson = new Gson();
+        Type type = new TypeToken<MyClass>(){}.getType();
+        MyClass myClass = gson.fromJson(jsonString, type);
+
+        System.out.println("Name: " + myClass.getName());
+        System.out.println("Age: " + myClass.getAge());
+        List<InnerClass> innerClasses = myClass.getInnerClasses();
+        for (InnerClass innerClass : innerClasses) {
+            System.out.println("Inner Name: " + innerClass.getInnerName());
+        }
+    }
+}
+```
