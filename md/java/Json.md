@@ -190,6 +190,14 @@ public class Main {
 
         // 생성된 JSON 출력
         System.out.println(json);
+
+        // JSON 파일로 저장
+        try (FileWriter fileWriter = new FileWriter("person.json")) {
+            fileWriter.write(json);
+            System.out.println("JSON 파일이 저장되었습니다.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 예시로 사용할 클래스 정의
