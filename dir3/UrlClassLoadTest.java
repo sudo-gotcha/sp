@@ -15,14 +15,14 @@ public class UrlClassLoadTest {
         Method addStrToList = SpUtil.getMethod(clazz,"addStrToList");
         Method printInfo = SpUtil.getMethod(clazz,"printInfo");
 
-        addStrToList.invoke(obj, "won");
+        addStrToList.invoke(obj, "aaa");
         printInfo.invoke(obj);
 
-        addStrToList.invoke(obj, "song");
+        addStrToList.invoke(obj, "bbb");
         printInfo.invoke(obj);
 
-        addStrToList.invoke(obj, "yeon");
+        addStrToList.invoke(obj, "ccc");
         printInfo.invoke(obj);
     }
 }
-//C:\Users\songy\IdeaProjects\tct\sp\src\main\resources\extClass\sample\test
+//C:\Users\user01\IdeaProjects\tct\sp\src\main\resources\extClass\sample\test
