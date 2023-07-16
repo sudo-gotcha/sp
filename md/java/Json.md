@@ -171,3 +171,97 @@ public class MyClass {
     }
 }
 ```
+
+## Json 만들기
+```java
+import com.google.gson.Gson;
+
+public class Main {
+    public static void main(String[] args) {
+        // JSON 형식에 맞게 데이터 구성
+        String name = "John";
+        int age = 30;
+        String email = "john@example.com";
+
+        // JSON 생성
+        Person person = new Person(name, age, email);
+        Gson gson = new Gson();
+        String json = gson.toJson(person);
+
+        // 생성된 JSON 출력
+        System.out.println(json);
+    }
+
+    // 예시로 사용할 클래스 정의
+    static class Person {
+        private String name;
+        private int age;
+        private String email;
+
+        public Person(String name, int age, String email) {
+            this.name = name;
+            this.age = age;
+            this.email = email;
+        }
+
+        // Getter 및 Setter 메서드
+        // ...
+    }
+}
+```
+
+### 중첩된 클래스의 경우 
+```java
+import com.google.gson.Gson;
+
+public class Main {
+    public static void main(String[] args) {
+        // JSON 형식에 맞게 데이터 구성
+        String name = "John";
+        int age = 30;
+        Address address = new Address("123 Main St", "City", "12345");
+
+        // Person 객체 생성
+        Person person = new Person(name, age, address);
+
+        // Gson을 사용하여 JSON 생성
+        Gson gson = new Gson();
+        String json = gson.toJson(person);
+
+        // 생성된 JSON 출력
+        System.out.println(json);
+    }
+
+    // Person 클래스 내부에 중첩된 Address 클래스 정의
+    static class Person {
+        private String name;
+        private int age;
+        private Address address;
+
+        public Person(String name, int age, Address address) {
+            this.name = name;
+            this.age = age;
+            this.address = address;
+        }
+
+        // Getter 및 Setter 메서드
+        // ...
+    }
+
+    // 중첩된 Address 클래스 정의
+    static class Address {
+        private String street;
+        private String city;
+        private String zipCode;
+
+        public Address(String street, String city, String zipCode) {
+            this.street = street;
+            this.city = city;
+            this.zipCode = zipCode;
+        }
+
+        // Getter 및 Setter 메서드
+        // ...
+    }
+}
+```
