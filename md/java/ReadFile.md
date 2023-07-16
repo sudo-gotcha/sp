@@ -1,6 +1,6 @@
 # File 읽기
 아래 예시 코드는 첫 번째 파일을 열어서 그 안에 있는 두 번째 파일의 이름을 얻고, 두 번째 파일을 여는 코드입니다. 콘솔로 첫 번째 파일의 이름을 입력받고, 입력한 파일을 열어서 그 안에 있는 두 번째 파일의 이름을 읽습니다. 그리고 두 번째 파일을 열어서 작업을 수행합니다.
-```
+```java
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,6 +27,31 @@ public class Main {
             secondFileReader.close();
             firstFileReader.close();
             consoleReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## 여러 줄 읽기
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("파일명.txt"));
+            String line;
+            
+            while ((line = reader.readLine()) != null) {
+                // 읽은 줄에 대한 작업 수행
+                System.out.println(line);
+            }
+            
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
