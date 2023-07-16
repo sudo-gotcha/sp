@@ -1,6 +1,6 @@
 # JSON
 ## 예시
-```
+```json
 {
   "name": "John",
   "age": 30,
@@ -12,7 +12,7 @@
 ```
 
 ## Java에서 JSON 데이터를 파싱하는 방법
-```
+```java
 import com.google.gson.Gson;
 import java.util.Map;
 
@@ -37,7 +37,7 @@ public class Main {
 ```
 
 ## Java Class 정의 (바로 Class로 매핑)
-```
+```java
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -67,7 +67,7 @@ public class MyClass {
 ```
 
 ### JSON 파일을 읽어 객체로 변환
-```
+```java
 try {
     File jsonFile = new File("path/to/json/file.json");
     FileReader fileReader = new FileReader(jsonFile);
