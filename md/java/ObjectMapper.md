@@ -211,7 +211,7 @@ try {
 ```
 
 ## 객체를 Json 파일로 변환
-```
+```java
 MyClass myClass = new MyClass("John", 30, new String[]{"contact1", "contact2"}, new Subject[]{
         new Subject("Math", 3),
         new Subject("Science", 4)
