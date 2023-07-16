@@ -158,7 +158,7 @@ try {
 ```
 
 ## Json 데이터가 파일로부터 읽혀오는 경우
-```
+```java
 ObjectMapper objectMapper = new ObjectMapper();
 
 try {
@@ -178,6 +178,50 @@ try {
     for (Subject subject : myClass.getSubjects()) {
         System.out.println("- Name: " + subject.getName() + ", Credit: " + subject.getCredit());
     }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+
+# Gson
+## Gson 객체 생성
+```java
+Gson gson = new Gson();
+```
+
+## Json 파일을 읽어 객체로 변환
+```java
+try {
+    File jsonFile = new File("path/to/json/file.json");
+    FileReader fileReader = new FileReader(jsonFile);
+    MyClass myClass = gson.fromJson(fileReader, MyClass.class);
+    fileReader.close();
+    // 변환된 객체 사용
+    System.out.println("Name: " + myClass.getName());
+    System.out.println("Age: " + myClass.getAge());
+    System.out.println("Contacts: " + Arrays.toString(myClass.getContacts()));
+    System.out.println("Subjects: ");
+    for (Subject subject : myClass.getSubjects()) {
+        System.out.println("- Name: " + subject.getName() + ", Credit: " + subject.getCredit());
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+## 객체를 Json 파일로 변환
+```
+MyClass myClass = new MyClass("John", 30, new String[]{"contact1", "contact2"}, new Subject[]{
+        new Subject("Math", 3),
+        new Subject("Science", 4)
+});
+try {
+    File jsonFile = new File("path/to/output/file.json");
+    FileWriter fileWriter = new FileWriter(jsonFile);
+    gson.toJson(myClass, fileWriter);
+    fileWriter.close();
+    System.out.println("Json file has been created.");
 } catch (IOException e) {
     e.printStackTrace();
 }
