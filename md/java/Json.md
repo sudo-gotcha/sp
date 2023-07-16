@@ -81,3 +81,38 @@ try {
     e.printStackTrace();
 }
 ```
+
+## Class 안 Class 파싱
+```java
+public class MyClass {
+    private String name;
+    private int age;
+    private InnerClass[] innerClasses;
+
+    // Getter 및 Setter 메서드
+
+    public static class InnerClass {
+        private String innerName;
+
+        // Getter 및 Setter 메서드
+    }
+}
+```
+
+## JSON 데이터를 읽고 객체로 변환
+```java
+try {
+    File jsonFile = new File("path/to/json/file.json");
+    MyClass myClass = gson.fromJson(new FileReader(jsonFile), MyClass.class);
+
+    System.out.println("Name: " + myClass.getName());
+    System.out.println("Age: " + myClass.getAge());
+
+    InnerClass[] innerClasses = myClass.getInnerClasses();
+    for (InnerClass innerClass : innerClasses) {
+        System.out.println("Inner Name: " + innerClass.getInnerName());
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
