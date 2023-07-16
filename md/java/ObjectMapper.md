@@ -125,3 +125,34 @@ public class Subject {
 }
 ```
 
+## MyClass 객체를 Json 문자열로 변환
+```java
+ObjectMapper objectMapper = new ObjectMapper();
+MyClass myClass = new MyClass("John", 30, new String[]{"contact1", "contact2"}, new Subject[]{
+        new Subject("Math", 3),
+        new Subject("Science", 4)
+});
+try {
+    String json = objectMapper.writeValueAsString(myClass);
+    System.out.println(json);
+} catch (JsonProcessingException e) {
+    e.printStackTrace();
+}
+```
+
+## Json 문자열을 MyClass 객체로 변환
+```java
+String json = "{\"name\":\"John\", \"age\":30, \"contacts\":[\"contact1\", \"contact2\"], \"subjects\":[{\"name\":\"Math\", \"credit\":3}, {\"name\":\"Science\", \"credit\":4}]}";
+try {
+    MyClass myClass = objectMapper.readValue(json, MyClass.class);
+    System.out.println("Name: " + myClass.getName());
+    System.out.println("Age: " + myClass.getAge());
+    System.out.println("Contacts: " + Arrays.toString(myClass.getContacts()));
+    System.out.println("Subjects: ");
+    for (Subject subject : myClass.getSubjects()) {
+        System.out.println("- Name: " + subject.getName() + ", Credit: " + subject.getCredit());
+    }
+} catch (JsonProcessingException e) {
+    e.printStackTrace();
+}
+```
